@@ -50,11 +50,13 @@ def root():
     		<td><a href="/texts/iggy.txt">Text</a>&nbsp;|&nbsp;<a href="/keywords/iggy.txt">Keywords</a>&nbsp;|&nbsp;<a href="/bigrams/iggy.txt">Bigrams</a></td>
     	</tr>
     </table>
+    <hr/>
+    <p>Built by Beth Anderson during the Robot DJ Hackday, January 2017.</p>
     '''
 
-@route('/keywords/<name>')
-def index(name):
-  wordlist = loadwordlist('/Users/beth/Projects/siphon/text/' + name)
+@route('/keywords/<filename>')
+def index(filename):
+  wordlist = loadwordlist('./text/' + filename)
   keywords = findkeywords(wordlist)
   bigrams = findbigrams(wordlist)
   response = ", ".join(keywords)
@@ -62,9 +64,9 @@ def index(name):
   return template('<p>{{response}}</p>', response=response)
 
 
-@route('/bigrams/<name>')
-def index(name):
-  wordlist = loadwordlist('/Users/beth/Projects/siphon/text/' + name)
+@route('/bigrams/<filename>')
+def index(filename):
+  wordlist = loadwordlist('./text/' + filename)
   bigrams = findbigrams(wordlist)
   response = ""
 
@@ -75,15 +77,15 @@ def index(name):
 
 @route('/playlists/<filename>')
 def index(filename):
-	playlist = open('/Users/beth/Projects/siphon/playlists/' + filename).read()
+	playlist = open('./playlists/' + filename).read()
 	return playlist
 
 @route('/images/<filename>')
 def server_static(filename):
-    return static_file(filename, root='/Users/beth/Projects/siphon/images')
+    return static_file(filename, root='./images')
 
 @route('/texts/<filename>')
 def server_static(filename):
-    return static_file(filename, root='/Users/beth/Projects/siphon/text')
+    return static_file(filename, root='./text')
 
 run(host='localhost', port=1337)

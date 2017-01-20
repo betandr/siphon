@@ -2,6 +2,8 @@
 
 Siphon is an experiment to analyse text using the Python Natural Language Toolkit looking for bigrams and uncommon words. These words and bigrams are used to find tracks played on the BBC and create a playlist.
 
+![Siphon](https://github.com/betandr/siphon/blob/master/images/siphon.png)
+
 ## Running
 
 Run:
